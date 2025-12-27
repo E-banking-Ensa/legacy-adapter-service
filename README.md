@@ -1,0 +1,1 @@
+# legacy-adapter-service
