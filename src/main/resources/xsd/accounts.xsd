@@ -47,6 +47,7 @@
                 <xs:element name="source" type="xs:integer"/>
                 <xs:element name="motif" type="xs:string"/>
                 <xs:element name="dest" type="xs:integer"/>
+                <xs:element name="type" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

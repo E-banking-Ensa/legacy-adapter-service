@@ -29,12 +29,13 @@ public class SoapClient extends WebServiceGatewaySupport {
         );
     }
 
-    public me.polytech.ebanking_soap.gen.VirementResponse virement(int source, int dest, String motif, double montant) {
+    public me.polytech.ebanking_soap.gen.VirementResponse virement(int source, int dest, String motif, double montant,String type) {
         me.polytech.ebanking_soap.gen.VirementRequest request = new me.polytech.ebanking_soap.gen.VirementRequest();
         // Conversion int -> BigInteger car le XSD utilise xs:integer
         request.setSource(BigInteger.valueOf(source));
         request.setMotif(motif);
         request.setDest(BigInteger.valueOf(dest));
+        request.setType(type);
         request.setMontant(montant);
 
         return (me.polytech.ebanking_soap.gen.VirementResponse) getWebServiceTemplate().marshalSendAndReceive(

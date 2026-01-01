@@ -16,7 +16,7 @@ public class AdapterController {
     }
 
     // DTO simple pour recevoir les données JSON
-    public record TransactionDTO(int accountId, double amount, int destId,String motif) {}
+    public record TransactionDTO(int accountId, double amount, int destId,String motif,String type) {}
 
     @PostMapping("/depot")
     public Map<String, Object> depot(@RequestBody TransactionDTO dto) {
@@ -36,7 +36,8 @@ public class AdapterController {
                 dto.accountId(), // source
                 dto.destId(),    // destination
                 dto.motif(),
-                dto.amount()
+                dto.amount(),
+                dto.type()
         );
         return Map.of("status", res.getStatus());
     }
