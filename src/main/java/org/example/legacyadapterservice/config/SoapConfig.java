@@ -21,7 +21,7 @@ public class SoapConfig {
     public SoapClient soapClient(Jaxb2Marshaller marshaller) {
         SoapClient client = new SoapClient();
         // URL par défaut (sera surchargée par application.properties si besoin)
-        client.setDefaultUri("http://localhost:8080/ws");
+        client.setDefaultUri("http://localhost:8090/ws/");
         client.setMarshaller(marshaller);
         client.setUnmarshaller(marshaller);
         return client;

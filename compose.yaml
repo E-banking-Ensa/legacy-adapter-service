@@ -1,18 +1,1 @@
-version: '3.8'
-
-services:
-  e-banking-db:
-    image: postgres
-    container_name: e-banking-db
-    restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: ENSA
-      POSTGRES_PASSWORD: ENSA
-      POSTGRES_DB: E_BANKING
-    volumes:
-      - db_data:/var/lib/postgresql/data
-
-volumes:
-  db_data:
+services: { }
