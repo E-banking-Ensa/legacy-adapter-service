@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.polytech.me/ebanking-soap"
+           xmlns:tns="http://www.polytech.me/ebanking-soap"
+           elementFormDefault="qualified">
+
+    <xs:element name="depotRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:int"/>
+                <xs:element name="montant" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="depotResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="montant" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RetraitRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:int"/>
+                <xs:element name="montant" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RetraitResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="montant" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="VirementRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="montant" type="xs:double"/>
+                <xs:element name="source" type="xs:integer"/>
+                <xs:element name="dest" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="VirementResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

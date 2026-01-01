@@ -1,0 +1,29 @@
+package org.example.legacyadapterservice.config;
+
+
+import org.example.legacyadapterservice.client.SoapClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+
+@Configuration
+public class SoapConfig {
+
+    @Bean
+    public Jaxb2Marshaller marshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        // Doit correspondre au <packageName> du pom.xml
+        marshaller.setContextPath("me.polytech.ebanking_soap.gen");
+        return marshaller;
+    }
+
+    @Bean
+    public SoapClient soapClient(Jaxb2Marshaller marshaller) {
+        SoapClient client = new SoapClient();
+        // URL par défaut (sera surchargée par application.properties si besoin)
+        client.setDefaultUri("http://localhost:8080/ws");
+        client.setMarshaller(marshaller);
+        client.setUnmarshaller(marshaller);
+        return client;
+    }
+}
