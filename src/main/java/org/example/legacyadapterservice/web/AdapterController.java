@@ -16,7 +16,7 @@ public class AdapterController {
     }
 
     // DTO simple pour recevoir les données JSON
-    public record TransactionDTO(int accountId, double amount, int destId) {}
+    public record TransactionDTO(int accountId, double amount, int destId,String motif) {}
 
     @PostMapping("/depot")
     public Map<String, Object> depot(@RequestBody TransactionDTO dto) {
@@ -35,6 +35,7 @@ public class AdapterController {
         me.polytech.ebanking_soap.gen.VirementResponse res = soapClient.virement(
                 dto.accountId(), // source
                 dto.destId(),    // destination
+                dto.motif(),
                 dto.amount()
         );
         return Map.of("status", res.getStatus());
