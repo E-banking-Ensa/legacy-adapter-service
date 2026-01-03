@@ -1,5 +1,6 @@
 package org.example.legacyadapterservice.client;
 
+import me.polytech.ebanking_soap.gen.VirementResponse;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -16,6 +17,15 @@ public class SoapClient extends WebServiceGatewaySupport {
                 request,
                 new SoapActionCallback("http://www.polytech.me/ebanking-soap/depotRequest")
         );
+    }
+    public me.polytech.ebanking_soap.gen.RechargeResponse recharge(int accountId, double amount, String phoneNumber) {
+        me.polytech.ebanking_soap.gen.RechargeRequest request = new me.polytech.ebanking_soap.gen.RechargeRequest();
+        request.setAccount(accountId);
+        request.setMontant(amount);
+        request.setPhoneNumber(phoneNumber);
+
+        return (me.polytech.ebanking_soap.gen.RechargeResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8090/ws", request);
     }
 
     public me.polytech.ebanking_soap.gen.RetraitResponse retrait(int compte, double montant) {
@@ -38,9 +48,8 @@ public class SoapClient extends WebServiceGatewaySupport {
         request.setType(type);
         request.setMontant(montant);
 
-        return (me.polytech.ebanking_soap.gen.VirementResponse) getWebServiceTemplate().marshalSendAndReceive(
-                request,
-                new SoapActionCallback("http://www.polytech.me/ebanking-soap/VirementRequest")
-        );
+        return (VirementResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8090/ws", request);
+
     }
 }

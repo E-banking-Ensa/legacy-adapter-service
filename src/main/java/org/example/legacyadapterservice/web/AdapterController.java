@@ -15,8 +15,10 @@ public class AdapterController {
         this.soapClient = soapClient;
     }
 
-    // DTO simple pour recevoir les données JSON
-    public record TransactionDTO(int accountId, double amount, int destId,String motif,String type) {}
+    public record TransactionDTO(int accountId, double amount, int destId, String motif, String type) {}
+
+    // DTO pour la recharge
+    public record RechargeRequestDTO(int accountId, double amount, String phoneNumber) {}
 
     @PostMapping("/depot")
     public Map<String, Object> depot(@RequestBody TransactionDTO dto) {
@@ -33,12 +35,26 @@ public class AdapterController {
     @PostMapping("/virement")
     public Map<String, String> virement(@RequestBody TransactionDTO dto) {
         me.polytech.ebanking_soap.gen.VirementResponse res = soapClient.virement(
-                dto.accountId(), // source
-                dto.destId(),    // destination
+                dto.accountId(),
+                dto.destId(),
                 dto.motif(),
                 dto.amount(),
                 dto.type()
         );
         return Map.of("status", res.getStatus());
+    }
+
+    // Endpoint pour la recharge téléphonique
+    @PostMapping("/recharge")
+    public Map<String, Object> recharge(@RequestBody RechargeRequestDTO dto) {
+        me.polytech.ebanking_soap.gen.RechargeResponse res = soapClient.recharge(
+                dto.accountId(),
+                dto.amount(),
+                dto.phoneNumber()
+        );
+        return Map.of(
+                "status", res.getStatus(),
+                "transactionId", res.getTransactionId()
+        );
     }
 }

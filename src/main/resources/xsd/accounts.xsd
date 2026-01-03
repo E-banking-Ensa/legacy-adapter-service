@@ -59,4 +59,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="rechargeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:int"/>
+                <xs:element name="montant" type="xs:double"/>
+                <xs:element name="phoneNumber" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rechargeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="transactionId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
