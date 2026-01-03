@@ -16,18 +16,19 @@ public class AdapterController {
     }
 
     public record TransactionDTO(int accountId, double amount, int destId, String motif, String type) {}
+    public record DepotRetraitDTO(int accountId, double amount) {}
 
     // DTO pour la recharge
     public record RechargeRequestDTO(int accountId, double amount, String phoneNumber) {}
 
     @PostMapping("/depot")
-    public Map<String, Object> depot(@RequestBody TransactionDTO dto) {
+    public Map<String, Object> depot(@RequestBody DepotRetraitDTO dto) {
         me.polytech.ebanking_soap.gen.DepotResponse res = soapClient.depot(dto.accountId(), dto.amount());
         return Map.of("status", res.getStatus(), "solde", res.getMontant());
     }
 
     @PostMapping("/retrait")
-    public Map<String, Object> retrait(@RequestBody TransactionDTO dto) {
+    public Map<String, Object> retrait(@RequestBody DepotRetraitDTO dto) {
         me.polytech.ebanking_soap.gen.RetraitResponse res = soapClient.retrait(dto.accountId(), dto.amount());
         return Map.of("status", res.getStatus(), "solde", res.getMontant());
     }
