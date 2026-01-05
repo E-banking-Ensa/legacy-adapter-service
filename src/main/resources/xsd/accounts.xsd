@@ -59,4 +59,70 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="rechargeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="xs:int"/>
+                <xs:element name="montant" type="xs:double"/>
+                <xs:element name="phoneNumber" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rechargeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="transactionId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="buyCryptoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="transactionId" type="xs:int"/>
+                <xs:element name="cryptoAmountReceived" type="xs:double"/>
+                <xs:element name="rateUsed" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+    <xs:element name="sellCryptoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="transactionId" type="xs:int"/>
+                <xs:element name="fiatAmountReceived" type="xs:double"/>
+                <xs:element name="rateUsed" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="buyCryptoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:int"/>
+                <xs:element name="cryptoWalletId" type="xs:long"/>
+                <xs:element name="fiatAmount" type="xs:double"/>
+                <xs:element name="cryptoCurrency" type="xs:string"/>
+                <xs:element name="exchangeRate" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sellCryptoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountId" type="xs:int"/>
+                <xs:element name="cryptoWalletId" type="xs:long"/>
+                <xs:element name="cryptoAmount" type="xs:double"/>
+                <xs:element name="exchangeRate" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
