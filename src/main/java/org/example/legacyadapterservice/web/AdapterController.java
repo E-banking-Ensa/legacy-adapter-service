@@ -16,10 +16,14 @@ public class AdapterController {
     }
 
     // --- DTOs ---
-    public record TransactionDTO(int accountId, double amount, int destId, String motif, String type) {}
-    public record DepotRetraitDTO(int accountId, double amount) {}
-    public record RechargeRequestDTO(int accountId, double amount, String phoneNumber) {}
+    public record TransactionDTO(int accountId, double amount, int destId, String motif, String type) {
+    }
 
+    public record DepotRetraitDTO(int accountId, double amount) {
+    }
+
+    public record RechargeRequestDTO(int accountId, double amount, String phoneNumber) {
+    }
 
     // --- ENDPOINTS BANCAIRES ---
 
@@ -42,8 +46,7 @@ public class AdapterController {
                 dto.destId(),
                 dto.motif(),
                 dto.amount(),
-                dto.type()
-        );
+                dto.type());
         return Map.of("status", res.getStatus());
     }
 
@@ -52,19 +55,21 @@ public class AdapterController {
         me.polytech.ebanking_soap.gen.RechargeResponse res = soapClient.recharge(
                 dto.accountId(),
                 dto.amount(),
-                dto.phoneNumber()
-        );
+                dto.phoneNumber());
         return Map.of(
                 "status", res.getStatus(),
-                "transactionId", res.getTransactionId()
-        );
+                "transactionId", res.getTransactionId());
     }
 
     // Dans AdapterController.java
 
     // Mise à jour des DTOs pour inclure "exchangeRate"
-    public record CryptoBuyRequestDTO(int accountId, long walletId, double amount, String currency, double exchangeRate) {}
-    public record CryptoSellRequestDTO(int accountId, long walletId, double cryptoAmount, double exchangeRate) {}
+    public record CryptoBuyRequestDTO(int accountId, long walletId, double amount, String currency,
+            double exchangeRate) {
+    }
+
+    public record CryptoSellRequestDTO(int accountId, long walletId, double cryptoAmount, double exchangeRate) {
+    }
 
     @PostMapping("/crypto/buy")
     public Map<String, Object> buyCrypto(@RequestBody CryptoBuyRequestDTO dto) {
